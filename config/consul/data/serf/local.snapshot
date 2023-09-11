@@ -1,0 +1,18 @@
+alive: a5cd7262c481 172.26.0.2:8301
+event-clock: 1
+alive: a5cd7262c481 172.26.0.2:8301
+alive: 6a86aa64464a 172.26.0.3:8301
+clock: 1
+event-clock: 2
+alive: a0fbbbeb7c5c 172.26.0.2:8301
+alive: 3f6f3a605bb1 172.26.0.3:8301
+clock: 2
+event-clock: 3
+alive: a0fbbbeb7c5c 172.26.0.2:8301
+alive: 3f6f3a605bb1 172.26.0.3:8301
+clock: 3
+event-clock: 4
+alive: b060267c27a6 172.26.0.2:8301
+alive: 6a5fc5ee5d33 172.26.0.3:8301
+clock: 4
+event-clock: 5

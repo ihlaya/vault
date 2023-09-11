@@ -1,0 +1,43 @@
+version: '3.3'
+services:
+  vault-server:
+    build:
+      context: ./config/vault
+      args:
+        - CONFIG_TYPE=${CONFIG_TYPE}
+    container_name: vault-server
+    environment:
+      - VAULT_ADDR=http://127.0.0.1:8200
+      - CONFIG_TYPE=${CONFIG_TYPE}
+    ports:
+      - '8200:8200'
+    cap_add:
+      - IPC_LOCK
+    volumes:
+      - ./config/vault/${CONFIG_TYPE}/config.${CONFIG_TYPE}:/vault/config/local.${CONFIG_TYPE}
+      - hashicorp-vault:/vault
+    command: sh -c "vault server -config /vault/config/local.${CONFIG_TYPE}"
+
+  # consul:
+  #   build:
+  #     context: ./config/consul
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 8500:8500
+  #   command: agent -server -bind 0.0.0.0 -client 0.0.0.0 -bootstrap-expect 1 -config-file=/consul/config/config.json
+  #   volumes:
+  #     - ./config/consul/config.json:/consul/config/config.json
+  #     - ./config/consul/data:/consul/data
+
+  # consul-worker:
+  #   build:
+  #     context: ./config/consul
+  #     dockerfile: Dockerfile
+  #   command: agent -server -join consul -config-file=/consul/config/config.json
+  #   volumes:
+  #     - ./config/consul/config.json:/consul/config/config.json
+  #   depends_on:
+  #     - consul
+
+volumes:
+  hashicorp-vault:
